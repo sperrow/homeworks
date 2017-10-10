@@ -1,3 +1,5 @@
+require "byebug"
+
 class Board
   attr_accessor :cups
 
@@ -25,33 +27,42 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
-    cup = @cups[start_pos]
+    cup = @cups[start_pos].dup
     @cups[start_pos] = []
     i = start_pos
-    store = current_player_name == @name1 ? 6 : 13
+    # store = current_player_name == @name1 ? 6 : 13
     skip = current_player_name == @name1 ? 13 : 6
+    p "current player: #{current_player_name}"
+    p "skip: #{skip}"
     until cup.empty?
       i += 1
-      i = i % 13 if i > 13
+      i = i % 14 if i > 13
       @cups[i] << cup.pop unless i == skip
     end
 
-    result = nil
-    if i == store
-      result = :prompt
-    elsif @cups[i].length <= 1
-      next_turn(i)
-    else
-      result = :switch
-    end
+    # result = next_turn(i, current_player_name)
+    # if i == store
+    #   result = :prompt
+    # elsif @cups[i].length <= 1
+    #   next_turn(i)
+    # else
+    #   result = :switch
+    # end
 
     render
-    result
+    next_turn(i, current_player_name)
   end
 
   def next_turn(ending_cup_idx, current_player_name)
     # helper method to determine what #make_move returns
-    make_move(ending_cup_idx, current_player_name)
+    store = current_player_name == @name1 ? 6 : 13
+    if ending_cup_idx == store
+      return :prompt
+    elsif @cups[ending_cup_idx].length == 1
+      return :switch
+    else
+      return ending_cup_idx
+    end
   end
 
   def render
@@ -79,8 +90,10 @@ class Board
     p2 = @cups[13]
     if p1.length > p2.length
       @name1
-    else
+    elsif p1.length < p2.length
       @name2
+    else
+      :draw
     end
   end
 end
