@@ -1,0 +1,31 @@
+<section>
+  <h2>Album</h2>
+  <p><%= @album.title %> - <%= link_to @album.band.name, band_url(@album.band_id) %></p>
+  <p>Year: <%= @album.year %></p>
+  <p>Recording: <% if @album.live %>Live<% else %>Studio<% end %></p>
+  <p><%= link_to "Edit Album", edit_album_url(@album.id), class: "btn" %></p>
+</section>
+<section>
+  <h2>Tracks</h2>
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Track Listing</th>
+        <th>Track Type</th>
+      </thead>
+      <% @album.tracks.each do |track| %>
+        <tr>
+          <td><%= link_to track.title, track_url(track.id) %></td>
+          <td><%= track.ord %></td>
+          <td>
+            <% if track.bonus %>
+              Bonus
+            <% else %>
+              Regular
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <p><%= link_to "Add Track", new_track_url(album_id: params[:id]), class: "btn" %></p>
+</section>

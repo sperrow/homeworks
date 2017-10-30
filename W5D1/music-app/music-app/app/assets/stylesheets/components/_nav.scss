@@ -1,0 +1,26 @@
+.topnav {
+  ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  li {
+    list-style: none;
+    padding-right: 20px;
+  }
+
+  .nav-link {
+    color: white;
+    background-color: $gray-blue;
+    border: none;
+    font-size: 1em;
+    text-decoration: none;
+    padding: 10px;
+    margin: 20px 0;
+    display: inline-block;
+
+    &:hover {
+      background-color: $green;
+    }
+  }
+}

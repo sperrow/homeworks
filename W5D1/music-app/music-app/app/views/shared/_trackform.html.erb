@@ -1,0 +1,51 @@
+<% title = (track.persisted? ? "Edit" : "Add") %>
+<% action = (track.persisted? ? track_url(track) : tracks_url) %>
+<% method = (track.persisted? ? :patch : :post) %>
+<section class="form">
+  <h2><%= title %> Track</h2>
+  <% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <form class="" action="<%= action %>" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="<%= method %>">
+    <p>
+      <label for="title">Title: </label>
+      <input id="title" type="text" name="track[title]" value="<%= track.title %>">
+    </p>
+    <p>
+      <label for="album">Album: </label>
+      <select class="" id="album" name="track[album_id]">
+        <% Album.all.each do |album| %>
+        <option value="<%= album.id %>" <% if track.album_id == album.id %>selected<% end %>>
+          <%= "#{album.band.name} - #{album.title}" %>
+        </option>
+        <% end %>
+      </select>
+    </p>
+    <p>
+      <label for="ord">Track Listing: </label>
+      <input type="number" id="ord" name="track[ord]" min="1" max="100" step="1" value="<%= track.ord %>" />
+    </p>
+    <p>
+      <label for="bonus">Track Type: </label>
+      <input type="radio" name="track[bonus]" value="false"
+        <% if !track.bonus %> checked="checked"<% end %>
+      >Regular
+      <input type="radio" name="track[bonus]" value="true"
+      <% if track.bonus %> checked="checked"<% end %>
+      >Bonus
+    </p>
+    <p>
+      <label for="lyrics">Lyrics: </label>
+      <textarea id="lyrics" name="track[lyrics]" rows="8" cols="80"><%= track.lyrics %></textarea>
+    </p>
+    <p>
+      <input class="btn btn-submit" type="submit" name="" value="Submit">
+    </p>
+  </form>
+</section>

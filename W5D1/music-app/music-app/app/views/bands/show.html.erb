@@ -1,0 +1,29 @@
+<section>
+  <h2>Band</h2>
+  <p><%= @band.name %></p>
+  <p><%= link_to "Edit Band", edit_band_url(@band.id), class: "btn" %></p>
+</section>
+<section>
+  <h2>Albums</h2>
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Recording</th>
+      </thead>
+      <% @band.albums.each do |album| %>
+        <tr>
+          <td><%= link_to album.title, album_url(album.id) %></td>
+          <td><%= album.year %></td>
+          <td>
+            <% if album.live %>
+              Live
+            <% else %>
+              Studio
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <p><%= link_to "Add Album", new_album_url(band_id: params[:id]), class: "btn" %></p>
+</section>

@@ -1,0 +1,91 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  padding: 20px;
+}
+
+header {
+  padding: 20px 0;
+  text-align: center;
+  background-color: $blue;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+p {
+  padding: 10px 0;
+}
+
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+input, select {
+  font-size: 1em;
+}
+
+input[type=text], input[type=password] {
+  padding: 10px 10px;
+  width: 40%;
+}
+
+select {
+  height: 40px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+  margin: 40px 0;
+}
+
+thead {
+  background-color: $peach;
+}
+
+th, td {
+  padding: 10px;
+}
+
+.btn-container {
+  text-align: center;
+  background-color: $blue;
+}
+
+.btn {
+  color: white;
+  background-color: $gray-blue;
+  border: none;
+  // border-radius: 4px;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 10px;
+  margin: 20px 0;
+  display: inline-block;
+
+  &:hover {
+    background-color: $green;
+  }
+}
+
+.btn-submit {
+  &:hover {
+    background-color: $peach;
+  }
+}

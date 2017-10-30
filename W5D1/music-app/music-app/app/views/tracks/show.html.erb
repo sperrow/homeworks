@@ -1,0 +1,11 @@
+<section>
+  <h2>Track</h2>
+  <p>Title: <%= @track.title %></p>
+  <p>Band: <%= link_to @track.band.name, band_url(@track.band.id) %></p>
+  <p>Album: <%= link_to @track.album.title, album_url(@track.album_id) %></p>
+  <p>Track Listing: <%= @track.ord %></p>
+  <p>Track Type: <% if @track.bonus %>Bonus<% else %>Regular<% end %></p>
+  <p>Lyrics: </p>
+  <p class="lyrics"><%= @track.lyrics %></p>
+  <p><%= link_to "Edit Track", edit_track_url(@track.id), class: "btn" %></p>
+</section>

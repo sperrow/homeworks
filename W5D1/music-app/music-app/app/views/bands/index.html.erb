@@ -1,0 +1,12 @@
+<section>
+  <div class="">
+    <h2>Bands</h2>
+    <p><%= link_to "Add Band", new_band_url, class: "btn" %></p>
+  </div>
+  <% @bands.each do |band| %>
+    <div class="band-row">
+      <p><%= band.name %></p>
+      <p><%= link_to "View", band_url(band.id), class: "btn" %></p>
+    </div>
+  <% end %>
+</section>

@@ -1,0 +1,47 @@
+<% title = (album.persisted? ? "Edit" : "Add") %>
+<% action = (album.persisted? ? album_url(album) : albums_url) %>
+<% method = (album.persisted? ? :patch : :post) %>
+<section class="form">
+  <h2><%= title %> Album</h2>
+  <% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <form class="" action="<%= action %>" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="<%= method %>">
+    <p>
+      <label for="title">Title: </label>
+      <input id="title" type="text" name="album[title]" value="<%= album.title %>">
+    </p>
+    <p>
+      <label for="year">Year: </label>
+      <input type="number" id="year" name="album[year]" min="1900" max="2017" step="1" value="<%= album.year %>" />
+    </p>
+    <p>
+      <label for="band">Band: </label>
+      <select class="" id="band" name="album[band_id]">
+        <% Band.all.each do |band| %>
+          <option value="<%= band.id %>" <% if album.band_id == band.id %>selected<% end %>>
+            <%= band.name %>
+          </option>
+        <% end %>
+      </select>
+    </p>
+    <p>
+      <label for="live">Recording: </label>
+      <input type="radio" name="album[live]" value="false"
+        <% if !album.live %> checked="checked"<% end %>
+      >Studio
+      <input type="radio" name="album[live]" value="true"
+      <% if album.live %> checked="checked"<% end %>
+      >Live
+    </p>
+    <p>
+      <input class="btn btn-submit" type="submit" name="" value="Submit">
+    </p>
+  </form>
+</section>

@@ -1,0 +1,25 @@
+<p class="btn-container"><%= link_to "Sign Up", new_user_url, class: "btn" %></p>
+<section class="form">
+  <h2>Sign In</h2>
+  <% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <form class="" action="<%= session_url %>" method="post">
+    <%= auth_token %>
+    <p>
+      <label for="email">Email: </label>
+      <input id="email" type="text" name="user[email]" value="">
+    </p>
+    <p>
+      <label for="password">Password: </label>
+      <input id="password" type="password" name="user[password]" value="">
+    </p>
+    <p>
+      <input class="btn btn-submit" type="submit" name="" value="Sign In">
+    </p>
+  </form>
+</section>
