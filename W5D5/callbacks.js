@@ -23,4 +23,4 @@ const teaAndBiscuits = function() {
   });
 };
 
-teaAndBiscuits();
+module.exports = teaAndBiscuits;
